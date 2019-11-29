@@ -11,8 +11,12 @@ in
 end;
 infix ++;
 (* Part 2*)
-fun ** (Vec [],Vec [])=0.0
- |** (Vec (x::xs),Vec (y::ys))=((x*y)+mul(Vec xs,Vec ys));
+local 
+	fun mult ( [], [])=0.0
+	|mult ( (x::xs), (y::ys))=((x*y)+mult( xs, ys));
+in
+	fun ** (Vec a, Vec b)=( mult(a,b))
+end;
 infix **;
 (* Part 3*)
 local
@@ -21,3 +25,5 @@ local
 in
 	fun scalar_mult a=fn (Vec x)=>Vec ((scalarmult a) x)
 end;
+(* Part 4*)
+fun normalize (Vec a)=scalar_mult (1.0/Math.sqrt(((Vec a)**(Vec a))))  (Vec a);
