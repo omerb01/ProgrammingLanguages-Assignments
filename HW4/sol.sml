@@ -41,5 +41,6 @@ local
 	fun intPow(a,0)=1
 	| intPow (a,n)=a*intPow(a,n-1)
 in
-	fun evalTree x (Poly((a,n),t1,t2))=a*(intPow(x,n))+evalTree x t1 +evalTree x t2
+	fun evalTree x Lf=0
+	| evalTree x (Poly((a,n),t1,t2))=a*(intPow(x,n))+evalTree x t1 +evalTree x t2
 end;
